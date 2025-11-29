@@ -209,5 +209,6 @@ public class ProductsPageTest {
             if (n.equalsIgnoreCase(firstName)) occurrences++;
         }
         Assert.assertEquals(occurrences, 1, "Product should appear only once in the cart");
+        // Hellow
     }
 }
