@@ -1,7 +1,7 @@
 # 🧪 Swag Labs – Manual & Automation Testing Project
 
 <p align="center">
-  <img src="https://www.saucedemo.com/favicon.ico" width="250"/>
+  <img src="https://i.ytimg.com/vi/hypO6hgSzP4/sddefault.jpg" width="250"/>
 </p>
 
 ## 📌 Overview
