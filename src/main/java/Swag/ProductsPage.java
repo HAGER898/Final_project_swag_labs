@@ -78,6 +78,20 @@ public class ProductsPage {
         }
     }
 
+    // Add all available items to the cart
+    public void addAllItems() {
+        // Keep clicking the first available Add button until none remain
+        List<WebElement> addButtons = driver.findElements(anyAddButton);
+        while (!addButtons.isEmpty()) {
+            // Ensure the button is clickable before clicking
+            new WebDriverWait(driver, Duration.ofSeconds(5))
+                    .until(ExpectedConditions.elementToBeClickable(addButtons.get(0)))
+                    .click();
+            // Refresh the list since the DOM changes (button id/text toggles)
+            addButtons = driver.findElements(anyAddButton);
+        }
+    }
+
     // Remove the first available item from the cart (first visible Remove button)
     public void removeFirstItemFromCart() {
         WebElement removeBtn = new WebDriverWait(driver, Duration.ofSeconds(5))

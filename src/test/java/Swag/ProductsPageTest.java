@@ -3,7 +3,10 @@ package Swag;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.UnexpectedAlertBehaviour;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -14,6 +17,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 
 public class ProductsPageTest {
@@ -28,7 +33,18 @@ public class ProductsPageTest {
 
     @BeforeMethod
     public void setUp() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        Map<String, Object> prefs = new HashMap<>();
+        // Disable Chrome password save/change prompts
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+        // Block site notifications
+        prefs.put("profile.default_content_setting_values.notifications", 2);
+        options.setExperimentalOption("prefs", prefs);
+        // Dismiss any unexpected JS alerts/prompts to avoid interrupting tests
+        options.setCapability(CapabilityType.UNHANDLED_PROMPT_BEHAVIOUR, UnexpectedAlertBehaviour.DISMISS);
+        options.addArguments("--disable-notifications");
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         driver.get(url);
         // Login with a valid user
@@ -66,7 +82,7 @@ public class ProductsPageTest {
         Assert.assertEquals(after, before + 1, "Cart badge should increment by 1 after adding an item");
     }
 
-    @Test(testName = "PP_TC_05 - Add to Cart changes to Remove and badge updates")
+    @Test(testName = "PP_TC_03 - Add to Cart changes to Remove and badge updates")
     public void addToCartChangesButtonAndBadge() {
         ProductsPage products = new ProductsPage(driver);
         // Initially the first item's button should be Add to cart
@@ -82,7 +98,7 @@ public class ProductsPageTest {
         Assert.assertEquals(afterBadge, beforeBadge + 1, "Badge should update by +1 after adding first item");
     }
 
-    @Test(testName = "PP_TC_06 - Add multiple items updates badge count accordingly")
+    @Test(testName = "PP_TC_04 - Add multiple items updates badge count accordingly")
     public void addMultipleItemsIncrementsBadge() {
         ProductsPage products = new ProductsPage(driver);
         int before = products.getCartBadgeCount();
@@ -92,7 +108,7 @@ public class ProductsPageTest {
         Assert.assertEquals(after, before + toAdd, "Badge should equal previous count + number of adds");
     }
 
-    @Test(testName = "PP_TC_07 - Removing an item reverts its button back to Add to cart")
+    @Test(testName = "PP_TC_05 - Removing an item reverts its button back to Add to cart")
     public void removeRevertsButtonToAdd() {
         ProductsPage products = new ProductsPage(driver);
         // Ensure item is added first
@@ -105,7 +121,7 @@ public class ProductsPageTest {
         Assert.assertTrue(buttonText.equalsIgnoreCase("Add to cart"), "After removing, button should be 'Add to cart'");
     }
 
-    @Test(testName = "PP_TC_08 - Removing last item hides the cart badge")
+    @Test(testName = "PP_TC_06 - Removing last item hides the cart badge")
     public void removingLastItemHidesBadge() {
         ProductsPage products = new ProductsPage(driver);
         // Clean state: remove all items if any
@@ -120,7 +136,7 @@ public class ProductsPageTest {
         Assert.assertFalse(products.isCartBadgeVisible(), "Badge should disappear after removing last item");
     }
 
-    @Test(testName = "PP_TC_03 - Verify sorting Name (Z to A) changes first item")
+    @Test(testName = "PP_TC_07 - Verify sorting Name (Z to A) changes first item")
     public void verifySortingZToAChangesOrder() {
         ProductsPage products = new ProductsPage(driver);
         String before = products.getFirstItemName();
@@ -129,7 +145,7 @@ public class ProductsPageTest {
         Assert.assertNotEquals(after, before, "First item should change after sorting Z to A");
     }
 
-    @Test(testName = "PP_TC_04 - Verify logout from products page returns to login")
+    @Test(testName = "PP_TC_08 - Verify logout from products page returns to login")
     public void verifyLogout() {
         ProductsPage products = new ProductsPage(driver);
         // Wait after login to ensure products page is fully loaded before attempting logout
