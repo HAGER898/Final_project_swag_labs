@@ -9,8 +9,7 @@ public class Main {
        /* WebDriver myBrowser = new ChromeDriver();
         WebElement Searchbox;
 
-        */
-        System.out.println(add(12.5,13.4));
+
         /*        String url= "https://www.saucedemo.com/";
         myBrowser.get(url);
         //Maximize the Browser
