@@ -92,10 +92,7 @@ mvn test
 
 ---
 
-## 📸 Project Structure Screenshot
-```
-[ Attach the screenshot from IntelliJ here ]
-```
+
 
 ---
 
