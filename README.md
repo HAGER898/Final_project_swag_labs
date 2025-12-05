@@ -35,6 +35,9 @@ Test-Automation/
     ├── LoginPage.java          # Page Object for Login Page
     ├── ProductsPage.java       # Page Object for Products Page
     └── ProductsPageTest.java   # TestNG test cases for Products Page
+    ├── checkoutinfo.java
+    ├── checkoutoverview.java 
+    ├── checkoutcomplete.Java 
 ```
 
 ---
@@ -49,10 +52,11 @@ Test-Automation/
 
 Manual testing files include:
 - Login Test Cases  
-- Products Page Test Cases  
+- Products Page Test Cases
+- checkout Test cases  
 - Test Scenarios  
 - Expected vs Actual Results  
-
+- 
 ---
 
 ## 🤖 Automation Testing Coverage
@@ -69,7 +73,18 @@ Manual testing files include:
 - Add to cart functionality  
 - Product name & price assertions  
 - Sorting tests (A → Z, Z → A, Low → High, High → Low)  
-- Buttons / UI element checks  
+- Buttons / UI element checks
+
+  
+### check out 
+- Valid checkout
+- Required fields validation
+- Error messages
+- Price & totals validation
+- Verify items in overview
+- Continue / Cancel actions
+- Complete order
+- Confirm success page
 
 ---
 
