@@ -77,7 +77,7 @@ Manual testing files include:
 
 ### 1️⃣ Clone the project
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/HAGER898/Final_project_swag_labs.git
 ```
 
 ### 2️⃣ Install Maven dependencies
