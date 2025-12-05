@@ -24,9 +24,9 @@ public class LogoutPage {
         this.driver = driver;
     }
 
-    /**
-     * Performs logout using the sidebar menu and waits until redirected to the login page.
-     */
+
+     // Performs logout using the sidebar menu and waits until redirected to the login page.
+
     public void logout() {
         // Open the burger menu
         new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -43,9 +43,8 @@ public class LogoutPage {
                 .until(ExpectedConditions.visibilityOfElementLocated(loginButton));
     }
 
-    /**
-     * Returns true if the driver is currently on the Sauce Demo login page.
-     */
+
+     // Returns true if the driver is currently on the Sauce Demo login page.
     public boolean isOnLoginPage() {
         try {
             WebElement btn = new WebDriverWait(driver, Duration.ofSeconds(5))
