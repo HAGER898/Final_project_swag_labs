@@ -55,8 +55,7 @@ Manual testing files include:
 - Products Page Test Cases
 - checkout Test cases  
 - Test Scenarios  
-- Expected vs Actual Results  
-- 
+- Expected vs Actual Results 
 ---
 
 ## 🤖 Automation Testing Coverage
